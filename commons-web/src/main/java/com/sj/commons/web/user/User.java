@@ -1,5 +1,6 @@
 package com.sj.commons.web.user;
 
+import com.sj.commons.data.AbstractIdEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,14 +19,11 @@ import java.util.stream.Collectors;
  * @date 2019/05/13
  */
 @Data
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(callSuper = true)
 
 @Entity
-public class User implements UserDetails {
+public class User extends AbstractIdEntity implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Column(unique = true)
     private String username;

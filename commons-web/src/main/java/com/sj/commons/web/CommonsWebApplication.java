@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019/06/15
  */
 @SpringBootApplication
-public class CommonsWebCoreApplication {
+public class CommonsWebApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CommonsWebCoreApplication.class, args);
+        SpringApplication.run(CommonsWebApplication.class, args);
     }
 
 }
