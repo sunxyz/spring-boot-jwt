@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 
 @Service
-public class UserService {
+public class UserTokenService {
 
     private JwtTokenProvider jwtTokenProvider;
 

@@ -6,10 +6,13 @@ import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.Assert;
 
 import javax.persistence.*;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -22,6 +25,7 @@ import java.util.stream.Collectors;
 @EqualsAndHashCode(callSuper = true)
 
 @Entity
+@Table(name = "t_user")
 public class User extends AbstractIdEntity implements UserDetails {
 
 
@@ -34,9 +38,20 @@ public class User extends AbstractIdEntity implements UserDetails {
 
     private String roles;
 
+    private String avatar;
+    /**
+     * 　为用户授权
+     *
+     * @param role
+     */
+    public void grantRole(String role) {
+        Assert.notNull(role, "角色不能为空");
+        this.roles += role != null ? "," + role : role;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(roles.split(",")).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return Objects.isNull(roles)? Collections.emptyList(): (roles.contains(",")? Arrays.asList(roles.split(",")).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()): Collections.singletonList(new SimpleGrantedAuthority(roles)));
     }
 
     @Override

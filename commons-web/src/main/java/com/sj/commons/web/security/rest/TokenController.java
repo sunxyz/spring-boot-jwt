@@ -1,12 +1,10 @@
 package com.sj.commons.web.security.rest;
 
+import com.sj.commons.web.user.UserRegisterService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
@@ -20,24 +18,30 @@ import java.security.Principal;
 @AllArgsConstructor
 
 @RestController
-@RequestMapping("/token")
 public class TokenController {
 
-    private UserService userService;
+    private UserTokenService userTokenService;
 
-    @PostMapping("/signin")
-    public String login(String username,String password){
-        return userService.signIn(username, password);
+    private UserRegisterService userRegisterService;
+
+    @PostMapping("token/reg")
+    public void register(String username,String password){
+        userRegisterService.register(username,password);
+    }
+
+    @PostMapping("token/login")
+    public String login(@RequestBody UserLoginDTO loginDTO) {
+        return userTokenService.signIn(loginDTO.getUsername(), loginDTO.getPassword());
     }
 
     @GetMapping("/me")
-    public UserDetails whoAmI(Principal principal){
-        return (UserDetails)((UsernamePasswordAuthenticationToken)principal).getPrincipal();
+    public UserDetails whoAmI(Principal principal) {
+        return (UserDetails) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
     }
 
-    @GetMapping("/refresh")
-    public String refresh(HttpServletRequest request){
-        return userService.refresh(request.getRemoteUser());
+    @GetMapping("token/refresh")
+    public String refresh(HttpServletRequest request) {
+        return userTokenService.refresh(request.getRemoteUser());
     }
 
 }
