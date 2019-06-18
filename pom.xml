@@ -21,7 +21,7 @@
     </properties>
 
     <scm>
-        <url>https://192.168.2.50:3000/yangrd/commons</url>
+        <url>http://192.168.2.50:3000/yangrd/commons</url>
         <connection>
             scm:git:git://192.168.2.50:3000/yangrd/commons.git
         </connection>
