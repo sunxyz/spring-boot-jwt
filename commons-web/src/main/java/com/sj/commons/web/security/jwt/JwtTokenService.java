@@ -1,4 +1,4 @@
-package com.sj.commons.web.security.rest;
+package com.sj.commons.web.security.jwt;
 import com.sj.commons.web.exception.CustomException;
 import com.sj.commons.web.security.jwt.JwtTokenProvider;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 
 @Service
-public class UserTokenService {
+public class JwtTokenService {
 
     private JwtTokenProvider jwtTokenProvider;
 

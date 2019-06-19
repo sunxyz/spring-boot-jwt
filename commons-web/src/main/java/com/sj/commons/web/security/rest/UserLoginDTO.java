@@ -3,7 +3,7 @@ package com.sj.commons.web.security.rest;
 import lombok.Data;
 
 /**
- * UserSinginDTO
+ * UserLoginDTO
  *
  * @author yangrd
  * @date 2019/06/18
