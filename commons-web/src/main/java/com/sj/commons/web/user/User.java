@@ -4,6 +4,7 @@ import com.sj.commons.data.AbstractIdEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.Assert;
@@ -39,6 +40,7 @@ public class User extends AbstractIdEntity implements UserDetails {
     private String roles;
 
     private String avatar;
+
     /**
      * 　为用户授权
      *
@@ -51,7 +53,7 @@ public class User extends AbstractIdEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Objects.isNull(roles)? Collections.emptyList(): (roles.contains(",")? Arrays.asList(roles.split(",")).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()): Collections.singletonList(new SimpleGrantedAuthority(roles)));
+        return Objects.isNull(roles) ? Collections.emptyList() : (roles.contains(",") ? AuthorityUtils.createAuthorityList(roles.split(",")) : Collections.singletonList(new SimpleGrantedAuthority(roles)));
     }
 
     @Override
