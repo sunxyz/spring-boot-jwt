@@ -65,6 +65,8 @@ public class SampleApplication {
 
 }
 ```
+## 获取token
+[token 获取及使用　](./commons-web)
 ## 注意事项
 
 * spring-boot 已引用不需重复引用
