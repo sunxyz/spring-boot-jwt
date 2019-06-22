@@ -18,6 +18,6 @@ public class UserGrantRoleService {
      */
     public void grantRole(User user, String role) {
         Assert.notNull(role, "角色不能为空");
-        user.setRoles(user.getRoles() + role != null ? "," + role : role);
+        user.setRoles(user.getRoles() + "," + role);
     }
 }
