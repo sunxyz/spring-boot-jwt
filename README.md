@@ -19,7 +19,9 @@ mvn deploy -Dmaven.test.skip=true
 ### step 2
 
 需要jwt的项目进行引入
+
 如　sample-project
+
 pom 引入
 
 ```
