@@ -9,7 +9,7 @@
 - 登录-获取token
 
 **请求URL：** 
-- ` http://xx.com/token/signin`
+- ` http://xx.com/token/login`
   
 **请求方式：**
 - POST 
@@ -43,7 +43,7 @@ Authorization: Bearer　xxx-token
 
 请求报文
 ```
-GET /token/me
+GET /me
 Host: xxx.com
 Authorization: Bearer　xxx-token
 
