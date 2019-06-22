@@ -41,16 +41,6 @@ public class User extends AbstractIdEntity implements UserDetails {
 
     private String avatar;
 
-    /**
-     * 　为用户授权
-     *
-     * @param role
-     */
-    public void grantRole(String role) {
-        Assert.notNull(role, "角色不能为空");
-        this.roles += role != null ? "," + role : role;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Objects.isNull(roles) ? Collections.emptyList() : (roles.contains(",") ? AuthorityUtils.createAuthorityList(roles.split(",")) : Collections.singletonList(new SimpleGrantedAuthority(roles)));
